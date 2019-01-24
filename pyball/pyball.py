@@ -35,6 +35,9 @@ from pyball.models import Team
 from pyball.models import Sport
 from pyball.models.team import Coach
 from pyball.models.team import Player
+from pyball.models.generic_game import Game
+
+from pyball.models.schedule import Date
 
 
 class PyBall:
@@ -211,3 +214,13 @@ class PyBall:
         # url = "{0}seasons/{1}".format(BASE_URL, season_id)
         # results = self._get(url)
         raise NotImplementedError
+
+    def get_schedule_by_id_today(self, sport_id) -> Date:
+        url = '{0}/schedule/games/?sportId={1}'.format(BASE_URL, sport_id)
+        results = self._get(url)
+        return Date(**results['dates'][0])
+
+    def get_schedule_by_id_dates(self, sport_id, start_date, end_date) -> List[Date]:
+        url = '{0}/schedule/games/?sportId={1}&startDate={2}&endDate={3}'.format(BASE_URL, sport_id, start_date, end_date)
+        results = self._get(url)
+        return [Date(**date) for date in results['dates']]
