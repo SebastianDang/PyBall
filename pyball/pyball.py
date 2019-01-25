@@ -35,7 +35,6 @@ from pyball.models import Team
 from pyball.models import Sport
 from pyball.models.team import Coach
 from pyball.models.team import Player
-from pyball.models.generic_game import Game
 
 from pyball.models.schedule import Date
 
@@ -145,12 +144,12 @@ class PyBall:
         results = self._get(url)
         return Conference(**results['conferences'][0])
 
-    def get_draft_by_year(self, year: int=datetime.now().year - 1) -> Draft:
+    def get_draft_by_year(self, year: int = datetime.now().year - 1) -> Draft:
         url = "{0}/draft/{1}".format(BASE_URL, year)
         results = self._get(url)
         return Draft(**results['drafts'])
 
-    def get_latest_draftee_by_year(self, year: int=datetime.now().year - 1) -> Pick:
+    def get_latest_draftee_by_year(self, year: int = datetime.now().year - 1) -> Pick:
         """
         Insert year to return biographical and financial data for the most recent pick in the draft.
         :param year: int
@@ -160,7 +159,7 @@ class PyBall:
         results = self._get(url)
         return Pick(**results['pick'])
 
-    def get_draft_prospects_by_year(self, year: int=datetime.now().year - 1) -> List[Prospect]:
+    def get_draft_prospects_by_year(self, year: int = datetime.now().year - 1) -> List[Prospect]:
         url = "{0}/draft/prospects/{1}".format(BASE_URL, year)
         results = self._get(url)
         return [Prospect(**prospect) for prospect in results['prospects']]
@@ -221,6 +220,7 @@ class PyBall:
         return Date(**results['dates'][0])
 
     def get_schedule_by_id_dates(self, sport_id, start_date, end_date) -> List[Date]:
-        url = '{0}/schedule/games/?sportId={1}&startDate={2}&endDate={3}'.format(BASE_URL, sport_id, start_date, end_date)
+        url = '{0}/schedule/games/?sportId={1}&startDate={2}&endDate={3}'.format(
+            BASE_URL, sport_id, start_date, end_date)
         results = self._get(url)
         return [Date(**date) for date in results['dates']]

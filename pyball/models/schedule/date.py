@@ -15,8 +15,4 @@ class Date:
     events: List = None
 
     def __post_init__(self):
-        self.games = [
-            Game(**game)
-            for game
-            in self.games
-        ]
+        self.games = [Game(**game) for game in self.games]
