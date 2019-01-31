@@ -59,6 +59,11 @@ class PyBall:
         results = self._get(url)
         return Venue(**results['venues'][0])
 
+    def get_venue_with_location(self, venue_id: int) -> Venue:
+        url = "{0}/venues/{1}?hydrate=location".format(BASE_URL, venue_id)
+        results = self._get(url)
+        return Venue(**results['venues'][0])
+
     def get_game_status(self) -> List[GameStatus]:
         url = "{0}gameStatus".format(BASE_URL)
         results = self._get(url)
