@@ -40,7 +40,7 @@ class Game:
     ifNecessaryDescription: str = None
 
     def __post_init__(self):
-        self.status = Status(**self.status)
-        self.teams = Teams(**self.teams)
-        self.venue = Venue(**self.venue)
-        self.content = namedtuple('Content', self.content.keys())(*self.content.values())
+        self.status = Status(**self.status) if self.status else None
+        self.teams = Teams(**self.teams) if self.teams else None
+        self.venue = Venue(**self.venue) if self.venue else None
+        self.content = namedtuple('Content', self.content.keys())(*self.content.values()) if self.content else None

@@ -6,6 +6,7 @@ from .metric import Metric
 from .platform import Platform
 from .position import Position
 from .roster_type import RosterType
+from .event_type import EventType
 from .schedule_event_type import ScheduleEventType
 from .situation_code import SituationCode
 from .standing_type import StandingType

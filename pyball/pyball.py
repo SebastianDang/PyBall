@@ -17,6 +17,7 @@ from pyball.models.config.metric import Metric
 from pyball.models.config.platform import Platform
 from pyball.models.config.position import Position
 from pyball.models.config.roster_type import RosterType
+from pyball.models.config.event_type import EventType
 from pyball.models.config.schedule_event_type import ScheduleEventType
 from pyball.models.config.situation_code import SituationCode
 from pyball.models.config.stats_group import StatsGroup
@@ -108,6 +109,11 @@ class PyBall:
         url = "{0}/rosterTypes".format(BASE_URL)
         results = self._get(url)
         return [RosterType(**roster_type) for roster_type in results]
+
+    def get_event_types(self) -> List[EventType]:
+        url = "{0}/eventTypes".format(BASE_URL)
+        results = self._get(url)
+        return [EventType(**event_type) for event_type in results]
 
     def get_schedule_event_types(self) -> List[ScheduleEventType]:
         url = "{0}/scheduleEventTypes".format(BASE_URL)
@@ -222,10 +228,10 @@ class PyBall:
     def get_schedule_by_id_today(self, sport_id) -> Date:
         url = '{0}/schedule/games/?sportId={1}'.format(BASE_URL, sport_id)
         results = self._get(url)
-        return Date(**results['dates'][0])
+        return Date(**results['dates'][0]) if results['dates'] else [Date()]
 
     def get_schedule_by_id_dates(self, sport_id, start_date, end_date) -> List[Date]:
         url = '{0}/schedule/games/?sportId={1}&startDate={2}&endDate={3}'.format(
             BASE_URL, sport_id, start_date, end_date)
         results = self._get(url)
-        return [Date(**date) for date in results['dates']]
+        return [Date(**date) for date in results['dates']] if results['dates'] else [Date()]

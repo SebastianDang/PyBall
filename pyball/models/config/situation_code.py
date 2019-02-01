@@ -9,4 +9,5 @@ class SituationCode:
     description: str = None
     team: bool = None
     batting: bool = None
+    pitching: bool = None
     fielding: bool = None

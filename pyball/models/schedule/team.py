@@ -13,5 +13,5 @@ class Team:
     seriesNumber: int = None
 
     def __post_init__(self):
-      self.leagueRecord = namedtuple('LeagueRecord', self.leagueRecord.keys())(*self.leagueRecord.values())
-      self.team = namedtuple('Team', self.team.keys())(*self.team.values())
+      self.leagueRecord = namedtuple('LeagueRecord', self.leagueRecord.keys())(*self.leagueRecord.values()) if self.leagueRecord else None
+      self.team = namedtuple('Team', self.team.keys())(*self.team.values()) if self.team else None
