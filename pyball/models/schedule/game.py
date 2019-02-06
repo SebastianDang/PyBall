@@ -24,6 +24,7 @@ class Game:
     content: Dict[str, Any] = None
     isTie: bool = None
     gameNumber: int = None
+    publicFacing: bool = None
     doubleHeader: str = None
     gamedayType: str = None
     tiebreaker: str = None
