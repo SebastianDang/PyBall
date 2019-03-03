@@ -11,3 +11,4 @@ class SituationCode:
     batting: bool = None
     pitching: bool = None
     fielding: bool = None
+    pitching: bool = None
