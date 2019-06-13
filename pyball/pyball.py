@@ -180,6 +180,11 @@ class PyBall:
         results = self._get(url)
         return [Team(**team) for team in results['teams']]
 
+    def get_teams_by_sport(self, sport_id) -> List[Team]:
+        url = "{0}/teams/?sportIds={1}".format(BASE_URL, sport_id)
+        results = self._get(url)
+        return [Team(**team) for team in results['teams']]
+
     def get_team_by_id(self, team_id: int) -> Team:
         url = "{0}/teams/{1}".format(BASE_URL, team_id)
         results = self._get(url)
