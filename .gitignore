@@ -5,3 +5,4 @@ build/
 PyBall.egg-info/
 .*cache/
 *ipynb*
+.vscode
